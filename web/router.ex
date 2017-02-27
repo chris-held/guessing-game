@@ -22,6 +22,6 @@ defmodule GuessingGame.Router do
   # Other scopes may use custom stacks.
   scope "/api", GuessingGame do
     pipe_through :api
-    resources "/games", GamesController, only: [:create, :show, :update]
+    resources "/games", API.GamesController, only: [:create, :show, :update]
   end
 end

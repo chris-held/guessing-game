@@ -1,4 +1,4 @@
-defmodule GuessingGame.GamesController do
+defmodule GuessingGame.API.GamesController do
   use GuessingGame.Web, :controller
   import GuessingGame.GameService
   import GuessingGame.HintService
