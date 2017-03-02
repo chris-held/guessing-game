@@ -1,0 +1,28 @@
+<h2>Show game</h2>
+
+<ul>
+
+  <li>
+    <strong>Difficulty:</strong>
+    <%= @game.difficulty %>
+  </li>
+
+  <li>
+    <strong>Guesses left:</strong>
+    <%= @game.guesses_left %>
+  </li>
+
+  <li>
+    <strong>The number:</strong>
+    <%= @game.the_number %>
+  </li>
+
+  <li>
+    <strong>Won:</strong>
+    <%= @game.won %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: game_path(@conn, :edit, @game) %>
+<%= link "Back", to: game_path(@conn, :index) %>
