@@ -44,23 +44,49 @@ defmodule GuessingGame.API.GamesController do
   def update(conn, %{"id" => id, "guess" => guess}) do
     game = Repo.get!(Game, id)
 
-    # TODO - if guess is right set won variable to true,
-    # save and return with the updated game 
-    # otherwise:
-    # decrement guesses_left
-    # call get_higher_lower and put the result in results
-    # get a random hint and add that as a hint
-    hint_atom = get_hints
-    |> get_random_hint
-    game = %{
-      id: String.to_integer(id),
-      difficulty: :easy,
-      guesses_left: 4,
-      previous_guess: guess,
-      won: false,
-      results: get_higher_lower(guess, 1),
-      hint: get_hint(guess, hint_atom)
-    }
-    json conn, game
+    # TODO - don't allow guesses for completed games
+
+    game_changeset = get_update_changeset(game, guess == game.the_number)
+
+    changeset = Game.changeset(game, game_changeset)
+
+    case Repo.update(changeset) do
+      {:ok, game} ->
+        hint = nil
+        hilow = nil
+        if !game.won do
+          hint_atom = get_hints()
+          |> get_random_hint
+          hint = get_hint(guess, hint_atom)
+          hilow = get_higher_lower(guess, game.the_number)
+        end
+        ret = %{
+          id: game.id,
+          difficulty: game.difficulty,
+          guesses_left: game.guesses_left,
+          previous_guess: guess,
+          won: game.won,
+          results: hilow,
+          hint: hint
+        }
+        json conn, ret
+      {:error, changeset} ->
+        json conn, changeset
+    end 
+    
+    # # call get_higher_lower and put the result in results
+    # # get a random hint and add that as a hint
+    # hint_atom = get_hints
+    # |> get_random_hint
+    # ret = %{
+    #   id: game.id,
+    #   difficulty: game.difficulty,
+    #   guesses_left: game.guesses_left,
+    #   previous_guess: guess,
+    #   won: false,
+    #   results: get_higher_lower(guess, 1),
+    #   hint: get_hint(guess, hint_atom)
+    # }
+    # json conn, ret
   end
 end

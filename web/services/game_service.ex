@@ -26,4 +26,12 @@ defmodule GuessingGame.GameService do
     3
   end
 
+  def get_update_changeset(game, true) do
+    %{won: true}
+  end
+
+  def get_update_changeset(game, false) do
+    %{guesses_left: game.guesses_left - 1}
+  end
+
 end
