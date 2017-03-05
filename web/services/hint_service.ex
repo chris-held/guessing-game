@@ -1,13 +1,18 @@
 defmodule GuessingGame.HintService do
 
   def get_higher_lower(guess, actual) do
-    "The number is higher than your guess"
+    if (actual > guess) do
+      "The number is higher than your guess"
+    else
+      "The number is lower than your guess"
+    end
+    
   end
 
 
   def get_hints() do
-    [:evenodd, :prime, :divisibleby, :fieldgoal, :firstdigitgreater, :fibonacci,
-    :lastdigitgreater, :divisibledigits, :retired, :millenial, :carpetshampooer]
+    [:evenodd, :prime, :fieldgoal, :fibonacci,
+     :retired, :millenial, :carpetshampooer]
   end
 
   def get_random_hint(hints) do
@@ -15,47 +20,63 @@ defmodule GuessingGame.HintService do
   end
 
   def get_hint(guess, :evenodd) do
-    "The number is odd"
+    if Integer.is_even(guess) do
+      "The number is even"
+    else
+      "The number is odd"
+    end
   end
 
   def get_hint(guess, :prime) do
+  if Enum.member?([11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97], guess) do
     "The number is a prime number"
+  else
+    "The number is not a prime number"
   end
 
   def get_hint(guess, :fibonacci) do
-    "The number is a part of the fibonacci sequence"
-  end
-
-  def get_hint(guess, :divisibleby) do
-    "The number is divisible by 4"
+    if Enum.member?([13, 21, 34, 55, 89], guess) do
+      "The number is a part of the fibonacci sequence"
+    else
+      "The number is not part of the fibonacci sequence"
+    end
+    
   end
 
   def get_hint(guess, :fieldgoal) do
-    "The number is less than the longest field goal made in the NFL"
-  end
-
-  def get_hint(guess, :firstdigitgreater) do
-    "The number's first digit is greater than it's second"
-  end
-
-  def get_hint(guess, :lastdigitgreater) do
-    "The number's second digit is greater than it's first"
-  end
-
-  def get_hint(guess, :divisibledigits) do
-    "The number's first and second digit are divisible by each other'"
+    if guess > 63 do 
+      "The number is greater than the longest field goal made in the NFL"
+    else
+      "The number is less than the longest field goal made in the NFL"
+    end
+    
   end
 
   def get_hint(guess, :retired) do
-    "If the number were your age, you could retire"
+    if guess > 65 do
+      "If the number were your age, you could retire"
+    else
+      "If the number were your age, you wouldn't be able to retire"
+    end
+    
   end
 
   def get_hint(guess, :millenial) do
-    "If the number were your age, you'd be considered a millenial'"
+    if guess > 35 do
+      "If the number were your age, you wouldn't be considered a millenial"
+    else
+      "If the number were your age, you'd be considered a millenial"
+    end
+    
   end
 
   def get_hint(guess, :carpetshampooer) do
-    "If the number were your age, you could legally rent a carpet shampooer"
+    if guess > 24 do
+      "If the number were your age, you could legally rent a carpet shampooer"
+    else
+      "If the number were your age, you wouldn't be able to legally rent a carpet shampooer"
+    end
+    
   end
 
   
