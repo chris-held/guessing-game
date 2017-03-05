@@ -1,5 +1,6 @@
 defmodule GuessingGame.HintService do
-
+  require Integer
+  
   def get_higher_lower(guess, actual) do
     if (actual > guess) do
       "The number is higher than your guess"
@@ -28,10 +29,11 @@ defmodule GuessingGame.HintService do
   end
 
   def get_hint(guess, :prime) do
-  if Enum.member?([11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97], guess) do
-    "The number is a prime number"
-  else
-    "The number is not a prime number"
+    if Enum.member?([11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97], guess) do
+      "The number is a prime number"
+    else
+      "The number is not a prime number"
+    end
   end
 
   def get_hint(guess, :fibonacci) do

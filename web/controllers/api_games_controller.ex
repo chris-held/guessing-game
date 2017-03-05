@@ -45,6 +45,9 @@ defmodule GuessingGame.API.GamesController do
     game = Repo.get!(Game, id)
 
     # TODO - don't allow guesses for completed games
+    if game.won || game.guesses_left == 0 do
+      json conn, %{result: 'This game has been completed.'}
+    end
 
     game_changeset = get_update_changeset(game, guess == game.the_number)
 
