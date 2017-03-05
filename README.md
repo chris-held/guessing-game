@@ -7,9 +7,6 @@
 ### GET /:id 
 Returns information about a game.
 
-### POST /
-Create a new game. Include `difficulty` in the body (valid values are easy, normal, and hard)
-
 Response will look something like this:
 ```
 {
@@ -21,6 +18,8 @@ Response will look something like this:
 ```
 
 (completed games return what the number was)
+### POST /
+Create a new game. Include `difficulty` in the body (valid values are easy, normal, and hard)
 
 Response will look something like this:
 ```
