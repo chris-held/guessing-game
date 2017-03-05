@@ -10,6 +10,17 @@ Returns information about a game.
 ### POST /
 Create a new game. Include `difficulty` in the body (valid values are easy, normal, and hard)
 
+Response will look something like this:
+```
+{
+  "won": false,
+  "id": 10,
+  "guesses_left": 6,
+  "difficulty": "easy"
+}
+```
+
+(completed games return what the number was)
 
 Response will look something like this:
 ```
