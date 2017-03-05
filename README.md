@@ -8,10 +8,33 @@
 Returns information about a game.
 
 ### POST /
-Create a new game. Include `difficulty` in the body
+Create a new game. Include `difficulty` in the body (valid values are easy, normal, and hard)
+
+
+Response will look something like this:
+```
+{
+  "id": 3,
+  "guesses_left": 5
+}
+```
 
 ### PUT /:id 
 Make a guess. Include `guess` in the body
+
+
+Response will look something like this:
+```
+{
+  "won": false,
+  "results": "The number is lower than your guess",
+  "previous_guess": 42,
+  "id": 3,
+  "hint": "The number is less than the longest field goal made in the NFL",
+  "guesses_left": 4,
+  "difficulty": "normal"
+}
+```
 
 ##Heroku / Demo info
 The heroku server is running at https://murmuring-waters-39193.herokuapp.com. 
