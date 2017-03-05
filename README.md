@@ -1,5 +1,23 @@
 # GuessingGame
 
+# API
+
+## Games (the only resource)
+
+### GET /:id 
+Returns information about a game.
+
+### POST /
+Create a new game. Include `difficulty` in the body
+
+### PUT /:id 
+Make a guess. Include `guess` in the body
+
+##Heroku / Demo info
+The heroku server is running at https://murmuring-waters-39193.herokuapp.com. 
+There's a sample UI on codepen here http://codepen.io/chris-held/full/wWpQaY/.
+
+
 To start your Phoenix app:
 
   * Install dependencies with `mix deps.get`
