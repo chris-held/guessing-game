@@ -2,6 +2,8 @@
 
 # API
 
+Endpoint: host/api (ex localhost:4000/api)
+
 ## Games (the only resource)
 
 ### GET /:id 
