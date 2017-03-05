@@ -3,6 +3,7 @@ defmodule GuessingGame.API.GamesController do
   import GuessingGame.GameService
   import GuessingGame.HintService
   alias GuessingGame.Game
+  require Integer
 
   def show(conn, %{"id" => id}) do
     _game = Repo.get!(Game, id)
@@ -34,7 +35,7 @@ defmodule GuessingGame.API.GamesController do
 
     case Repo.insert(changeset) do
       {:ok, _game} ->
-        json conn, _game
+        json conn, %{id: _game.id, guesses_left: _game.guesses_left}
       {:error, changeset} ->
         json conn, changeset
     end
@@ -46,7 +47,7 @@ defmodule GuessingGame.API.GamesController do
 
     # TODO - don't allow guesses for completed games
     if game.won || game.guesses_left == 0 do
-      json conn, %{result: 'This game has been completed.'}
+      json conn, %{result: "This game has been completed."}
     end
 
     game_changeset = get_update_changeset(game, guess == game.the_number)

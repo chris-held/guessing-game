@@ -1,7 +1,8 @@
 defmodule GuessingGame.HintService do
   require Integer
-  
+
   def get_higher_lower(guess, actual) do
+    IO.puts(actual)
     if (actual > guess) do
       "The number is higher than your guess"
     else

@@ -35,5 +35,6 @@ defmodule GuessingGame.Endpoint do
     key: "_guessing_game_key",
     signing_salt: "gdQqn89r"
 
+  plug CORSPlug
   plug GuessingGame.Router
 end

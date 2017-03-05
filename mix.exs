@@ -33,6 +33,7 @@ defmodule GuessingGame.Mixfile do
     [{:phoenix, "~> 1.1.6"},
      {:postgrex, ">= 0.0.0"},
      {:plug, "~> 1.1.0"},
+     {:cors_plug, "~> 1.2"},
      {:phoenix_ecto, "~> 2.0.1"},
      {:phoenix_html, "~> 2.6.0"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
